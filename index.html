@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Controller Interface</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #1a1a1a;
+        color: #fff;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 20px;
+      }
+
+      .connection-panel {
+        background-color: #2a2a2a;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+
+      .input-group {
+        margin-bottom: 15px;
+      }
+
+      input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        background-color: #333;
+        border: 1px solid #444;
+        color: #fff;
+        border-radius: 4px;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 5px;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      button:disabled {
+        background-color: #555;
+        cursor: not-allowed;
+      }
+
+      .game-controls {
+        background-color: #2a2a2a;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .direction-pad {
+        display: inline-grid;
+        grid-template-columns: repeat(3, 60px);
+        gap: 5px;
+        margin: 20px;
+      }
+
+      .action-buttons {
+        margin-top: 20px;
+      }
+
+      .logs {
+        background-color: #2a2a2a;
+        padding: 20px;
+        border-radius: 8px;
+        height: 400px;
+        overflow-y: auto;
+      }
+
+      .log-entry {
+        margin: 5px 0;
+        padding: 5px;
+        border-left: 3px solid #4caf50;
+      }
+
+      .status {
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+      }
+
+      .connected {
+        background-color: #4caf50;
+      }
+
+      .disconnected {
+        background-color: #f44336;
+      }
+
+      .key-binding {
+        font-size: 0.8em;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-panel">
+        <div class="connection-panel">
+          <h2>Connection Settings</h2>
+          <div class="input-group">
+            <label for="game-id">Game ID:</label>
+            <input type="text" id="game-id" placeholder="Enter game ID" />
+          </div>
+          <div class="input-group">
+            <label for="player-id">Player ID:</label>
+            <input
+              type="text"
+              id="player-id"
+              placeholder="Enter player ID"
+              value="player1-xxx"
+            />
+          </div>
+          <button id="connect-btn">Connect</button>
+          <div id="connection-status" class="status disconnected">
+            Disconnected
+          </div>
+        </div>
+
+        <div class="game-controls">
+          <h2>Game Controls</h2>
+          <div class="direction-pad">
+            <div></div>
+            <button id="btn-up">
+              ↑
+              <div class="key-binding">[W]</div>
+            </button>
+            <div></div>
+            <button id="btn-left">
+              ←
+              <div class="key-binding">[A]</div>
+            </button>
+            <button id="btn-down">
+              ↓
+              <div class="key-binding">[S]</div>
+            </button>
+            <button id="btn-right">
+              →
+              <div class="key-binding">[D]</div>
+            </button>
+          </div>
+          <div class="action-buttons">
+            <button id="btn-weapon">
+              Switch Weapon
+              <div class="key-binding">[Q]</div>
+            </button>
+            <button id="btn-special">
+              Use Special
+              <div class="key-binding">[E]</div>
+            </button>
+            <button id="btn-marry">
+              Marry Wife
+              <div class="key-binding">[M]</div>
+            </button>
+            <button id="btn-b">
+              B
+              <div class="key-binding">[B]</div>
+            </button>
+            <button id="btn-x">
+              X
+              <div class="key-binding">[X]</div>
+            </button>
+            <button id="btn-h">
+              CHOOSE CHARACTER
+              <div class="key-binding">[H]</div>
+            </button>
+
+            <input id="dx" placeholder="dx" />
+            <input id="dy" placeholder="dy" />
+            <input id="j" placeholder="j" />
+            <input id="k" placeholder="k" />
+            <input id="l" placeholder="l" />
+            <input id="i" placeholder="i" />
+            <input id="g" placeholder="g" />
+            <input id="y" placeholder="y" />
+            <input id="typeC" placeholder="typeC 1 | 2" />
+          </div>
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div class="logs">
+          <h2>Game Logs</h2>
+          <div id="log-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
